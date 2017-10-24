@@ -131,20 +131,20 @@ void changeStatusM(vector<Regular>* remps){
         cout<<"out of range of employee records\n";
         return;
     }
-    bool found=false;
-    Regular* remp=0;
+    int index =0;
+    int position=-1;
     for (vector<Regular>::iterator it=remps->begin(); it!=remps->end(); it++) {
         Regular emp=*it;
         if (emp.getId()==id) {
-            remp=&emp;
-            found=true;
+            position=index;
         }
+        index++;
         //cout<<emp.printEmployee();
     }
     //Regular* emp=dynamic_cast<Regular*>(&(emps->at(id-1)));
     //cout<<typeid(emps->at(id-1)).name()<<"\n";
     //cout<<emps->at(id-1).printEmployee()<<"\n";
-    if (!found||remp==0) {
+    if (index==-1) {
         cout<<"This employee's status can't be changed or not found\n";
         return;
     }
@@ -163,12 +163,12 @@ void changeStatusM(vector<Regular>* remps){
             int salary;
             cout<<"How much Salary\n";
             cin>>salary;
-            remp->changeSalary(salary);
+            remps->at(position).changeSalary(salary);
         }else if (c2==2){
             string title;
             cout<<"What's the new Title\n";
             cin>>title;
-            remp->changeTitle(title);
+            remps->at(position).changeTitle(title);
         }else if (c2==3){
             int status;
             cout<<"What's the new Status?\n";
@@ -176,7 +176,7 @@ void changeStatusM(vector<Regular>* remps){
             cout<<"2.probation\n";
             cout<<"3.terminated\n";
             cin>>status;
-            remp->changeStatus(status);
+            remps->at(position).changeStatus(status);
         }
         
         

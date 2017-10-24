@@ -7,30 +7,24 @@
 //
 
 #include <iostream>
+#include <sstream>
 using namespace std;
 int curId=1;
 
-int main(int argc, const char * argv[]) {
-    
-    
-    return 0;
-}
 
 class Employee {
-private:
+protected:
     string Name;
     int Id;
     string Gender;
     string DateofHire;
     int Salary;
     string Title;
-    int Status;
-private:
+    int Status;//1.regular 2.probation 3.terminal
+public:
     Employee();
     void setEmployee(string,int,string,string,int,string,int);
-    void changeSalary(int curSalary);
-    void changeTitle(string curtitle);
-    void changeStatus(int curStatus);//1.regular 2.probation 3.terminal
+    string printEmployee();
 };
 Employee::Employee(){
     Name="";
@@ -51,13 +45,53 @@ void Employee::setEmployee(string name,int id, string gender, string dateofHire,
     Title=title;
     Status=status;
 }
-void Employee::changeStatus(int curStatus){
-
+string Employee::printEmployee(){
+    stringstream ss;
+    ss<<Id<<"."<<Name<<" "<<Gender<<" "<<DateofHire<<" "<<Salary<<" "<<Title<<" "<<Status<<"\n";
+    return ss.str();
 }
-class Regular : public Employee{
 
+class Regular : public Employee{
+public:
+    void changeSalary(int curSalary);
+    void changeTitle(string curtitle);
+    void changeStatus(int curStatus);//1.regular 2.probation 3.terminal
 };
+void Regular::changeSalary(int curSalary){
+    Salary=curSalary;
+}
+void Regular::changeTitle(string curtitle){
+    Title=curtitle;
+}
+void Regular::changeStatus(int curStatus){
+    Status=curStatus;
+}
 class Contractor : public Employee{
 
 };
+int main(int argc, const char * argv[]) {
+    int c1;
+    do{
+    cout<<"Welcome to CS13 HRIS\n";
+    cout<<"-----------------------\n";
+    cout<<"1.View Employee Records\n";
+    cout<<"2.Updata Employee Records\n";
+    //cout<<"3.Delete Employee Records\n";
+    cout<<"3.Add an Employee Record\n";
+    cout<<"4.quit\n";
+    cout<<"\n";
+    cin>>c1;
+    
+        if (c1==1) {
+            
+        }else if (c1==2){
+            
+        }else if (c1==3){
+            
+        }
+        
+    }while (c1!=4);
+    
+    return 0;
+}
 
